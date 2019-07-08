@@ -28,3 +28,12 @@
     owner: root
     group: root
   when: not my_cnf.stat.exists
+
+- name: Set up /etc/my.cnf.d/server.cnf
+  template:
+    src: 'server.cnf.j2'
+    dest: '/etc/my.cnf.d/server.cnf'
+    mode: 0644
+    owner: root
+    group: root
+  notify: Restart MariaDB
