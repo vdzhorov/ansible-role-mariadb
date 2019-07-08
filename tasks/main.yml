@@ -5,3 +5,20 @@
 
 - include: install-centos-7.yml
   when: ansible_distribution == "CentOS" and ansible_distribution_major_version == '7'
+
+- set_fact:
+    mysql_password: "{{ lookup('password', '/dev/null length=20 chars=ascii_letters') }}"
+
+- name: Check if /root/.my.cnf already exists
+  stat:
+    path: '/root/.my.cnf'
+  register: my_cnf
+
+- name: Set MariaDB password in /root/.my.cnf
+  template:
+    src: 'my.cnf.j2'
+    dest: '/root/.my.cnf'
+    mode: 0600
+    owner: root
+    group: root
+  when: not my_cnf.stat.exists
