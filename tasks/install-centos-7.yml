@@ -18,3 +18,8 @@
     name: mysql
     state: started
     enabled: yes
+
+- name: Install MySQL-python required for managing user passwords
+  yum:
+    name: MySQL-python
+    state: installed
