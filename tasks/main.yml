@@ -14,6 +14,12 @@
     path: '/root/.my.cnf'
   register: my_cnf
 
+- name: Set MariaDB root password
+  mysql_user:
+    user: 'root'
+    password: '{{ mysql_password }}'
+  when: not my_cnf.stat.exists
+
 - name: Set MariaDB password in /root/.my.cnf
   template:
     src: 'my.cnf.j2'
