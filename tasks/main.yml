@@ -20,6 +20,11 @@
     password: '{{ mysql_password }}'
   when: not my_cnf.stat.exists
 
+- name: Remove MariaDB 'test' user
+  mysql_user:
+    name: 'test'
+    state: absent
+
 - name: Set MariaDB password in /root/.my.cnf
   template:
     src: 'my.cnf.j2'
