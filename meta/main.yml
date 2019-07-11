@@ -4,7 +4,7 @@ dependencies: []
 
 galaxy_info:
   author: vdzhorov
-  description: Install and configuring MariaDB
+  description: Install and configure MariaDB
   company: "Delta.BG"
   license: "license (MIT)"
   min_ansible_version: 2.5
